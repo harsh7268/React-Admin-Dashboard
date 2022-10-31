@@ -1,6 +1,6 @@
 import './widgetLg.css';
 
-export default function WidgetLg() {
+export default function WidgetLg({data}) {
 
   const Button = ({type}) =>{
     return <button className={'widgetLgButton ' + type}>{type}</button>
@@ -8,58 +8,35 @@ export default function WidgetLg() {
 
   return (
     <div className='widgetLg'>
-      <h3 className="widgetLgTitle">Latest transactions</h3>
+      <h3 className="widgetLgTitle">Industry Data</h3>
       <table className="widgetLgTable">
         <tr className="widgetLgTr">
-          <th className="widgetLgTh">Customer</th>
-          <th className="widgetLgTh">Date</th>
-          <th className="widgetLgTh">Amount</th>
-          <th className="widgetLgTh">Status</th>
+         
+          <th className="widgetLgTh">Topic</th>
+          <th className="widgetLgTh">Region</th>
+          <th className="widgetLgTh">Country</th>
+          <th className="widgetLgTh">Intensity</th>
+          <th className="widgetLgTh">Insight</th>
+          <th className="widgetLgTh">Relevance</th>
+          <th className="widgetLgTh">Likelihood</th>
+          <th className="widgetLgTh">Start</th>
+          <th className="widgetLgTh">End</th>
         </tr>
+        {data && data.map((item)=>(
         <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" className="widgetLgImg" />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Approved"/>
-          </td>
+          <td className="widgetLgUser">{item.topic} </td>
+          <td className="widgetLgDate">{item.region}</td>
+          <td className="widgetLgAmount">{item.country}</td>
+          <td className="widgetLgAmount">{item.intensity}</td>
+          <td className="widgetLgAmount">{item.insight}</td>
+          <td className="widgetLgAmount">{item.relevance}</td>
+          <td className="widgetLgAmount">{item.likelihood}</td>
+          <td className="widgetLgAmount">{item.start_year}</td>
+          <td className="widgetLgAmount">{item.end_year}</td>
+
         </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" className="widgetLgImg" />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Declined"/>
-          </td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" className="widgetLgImg" />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Pending"/>
-          </td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" className="widgetLgImg" />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Approved"/>
-          </td>
-        </tr>
+       ))}
+       
        
       
       </table>

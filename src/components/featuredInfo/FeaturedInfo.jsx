@@ -1,45 +1,74 @@
 import './featuredInfo.css';
 import { ArrowDownward,ArrowUpward } from '@material-ui/icons';
+import { useEffect, useState } from 'react';
 
-export default function FeaturedInfo() {
+export default function FeaturedInfo({industryData}) {
+  const [region,setRegion] = useState(null);
+  const [country,setCountry] = useState(null);
+  const [topic,setTopic] = useState(null);
+  const removeDublicate = (arr) =>{
+    let arr1 = arr.filter((value,index,self)=>
+       index===self.findIndex((t)=>(
+        t.region===value.region
+       ))   
+    );
+    setRegion(arr1.length);
+
+    arr1 = arr.filter((value,index,self)=>
+       index===self.findIndex((t)=>(
+        t.country===value.country
+       ))   
+    );
+    setCountry(arr1.length);
+
+    arr1 = arr.filter((value,index,self)=>
+    index===self.findIndex((t)=>(
+     t.topic===value.topic
+    ))
+ );
+
+ setTopic(arr1.length);
+  }
+  useEffect(()=>{
+    const today = new Date();
+    console.log(industryData);
+      let arr=industryData.filter((item) => item.end_year===today.getFullYear());
+     removeDublicate(arr);
+  },[]);
   return (
+    <>{ region &&
     <div className='featured'>
       <div className="featuredItem">
-        <span className="featuredTitle">Revanue</span>
+        <span className="featuredTitle">Regions</span>
         <div className="featuredMoneyContainer">
-            <span className="featuredMoney">$2,415</span>
-            <span className="featuredMoneyRate">
-                -11.4 <ArrowDownward className="featuredIcon negative" /> 
-            </span>
+            <span className="featuredMoney">{  region}</span>
+            
         </div>
         <span className="featuredSub">
-            compared to last month
+            compared to last Year
         </span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Sales</span>
+        <span className="featuredTitle">Countries</span>
         <div className="featuredMoneyContainer">
-            <span className="featuredMoney">$4,415</span>
-            <span className="featuredMoneyRate">
-                -1.4 <ArrowDownward className="featuredIcon negative"/> 
-            </span>
+            <span className="featuredMoney">{country}</span>
         </div>
         <span className="featuredSub">
-            compared to last month
+            compared to last Year
         </span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Cast</span>
+        <span className="featuredTitle">Topics</span>
         <div className="featuredMoneyContainer">
-            <span className="featuredMoney">$2,225</span>
-            <span className="featuredMoneyRate">
-                +2.4 <ArrowUpward className="featuredIcon" /> 
-            </span>
+            <span className="featuredMoney">{ topic}</span>
         </div>
         <span className="featuredSub">
-            compared to last month
+            compared to last Year
         </span>
       </div>
     </div>
+}
+    </>
+  
   )
 }
