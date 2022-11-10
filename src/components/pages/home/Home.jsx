@@ -1,20 +1,18 @@
 import Chart from '../../chart/Chart';
 import FeaturedInfo from '../../featuredInfo/FeaturedInfo';
 import './home.css';
+import {userData} from '../../../dummyData';
+import WidgetSm from '../../widgetSm/WidgetSm';
 import WidgetLg from '../../widgetLg/WidgetLg';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
-
-export default function Home({industryData}) {
- 
+export default function Home() {
   return (
     <div className='home'>
-      <FeaturedInfo industryData={industryData} />
-      <Chart data={industryData} title="Industry Analytics" grid dataKey="intensity" />
+      <FeaturedInfo />
+      <Chart data={userData} title="User Analytics" grid dataKey="Active User" />
       <div className="homeWidgets">
-        
-        <WidgetLg data={industryData} />
+        <WidgetSm />
+        <WidgetLg />
       </div>
     </div>
   )

@@ -4,27 +4,13 @@ import './app.css'
 import Home from "./components/pages/home/Home";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import UserList from "./components/pages/userList/UserList";
-import { useEffect, useState } from "react";
+import User from "./components/pages/user/User";
+import NewUser from "./components/pages/newUser/NewUser";
+import ProductList from "./components/pages/productList/ProductList";
+import Product from "./components/pages/product/Product";
+import NewProduct from "./components/pages/newProduct/NewProduct";
 
 function App() {
-  const [industryData,setIndustryData] = useState([]);
-
-  const getData = async () =>{
-    const response = await fetch(`http://localhost:5000/api/industries/get`,{
-      method:'GET',
-      headers:{
-        'Content-Type':"application/json"
-      }
-});
-        const result = await response.json();
-        console.log(result);
-        setIndustryData(result)
-  }
-
-  useEffect(()=>{
-   getData();
-  },[]);
-
   return (
     <BrowserRouter>
     <div >
@@ -32,9 +18,13 @@ function App() {
      <div className="container">
       <Sidebar />
       <Routes>
-      <Route path="/" element={<Home  industryData={industryData}/>}/>
-      <Route path="/users" element={<UserList  />}/>
-     
+      <Route path="/" element={<Home />}/>
+      <Route path="/users" element={<UserList />}/>
+      <Route path="/user/:userId" element={<User />}/>
+      <Route path="/newUser" element={<NewUser />}/>
+      <Route path="/products" element={<ProductList />}/>
+      <Route path="/product/:userId" element={<Product />}/>
+      <Route path="/newProduct" element={<NewProduct />}/>
       </Routes>
      </div>
     </div>
